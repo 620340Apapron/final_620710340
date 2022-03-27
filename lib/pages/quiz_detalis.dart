@@ -24,39 +24,24 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
 
   @override
   Widget build(BuildContext context) {
-    var quizItem;
-
     return Scaffold(
-      body: Stack(
-        children: [
+      body:
+          // body: Stack(
+          //   children: [
+          //     ListView.builder(
+          //       itemCount: QuizData.list.length,
+          //       itemBuilder: (context, index) => _buildListItem(context, index),
+          //     ),
+          //     if (_isLoading)
           Container(
-            constraints: const BoxConstraints.expand(),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/BG.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            alignment: Alignment.center,
-            child: Column(children: [
-              AspectRatio(
-                aspectRatio: 1.7,
-                child: Image.network(
-                  quizItem.image,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              if (_isLoading)
-                const Center(
-                  child: SizedBox(
-                    width: 40.0,
-                    height: 40.0,
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-            ]),
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/BG.jpg'),
+            fit: BoxFit.cover,
           ),
-        ],
+        ),
+        alignment: Alignment.center,
       ),
     );
   }
@@ -76,8 +61,30 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
 
     setState(() {
       QuizData.list = apiResult.data
-          .map<guizItem>((item) => List<String>.from(json[item]))
+          .map<guizItem>((item) => guizItem.fromJson(item))
           .toList();
     });
+  }
+
+  Widget _buildListItem(BuildContext context, int index) {
+    var guizItem = QuizData.list[index];
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 1.7,
+                child: Image.network(
+                  guizItem.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

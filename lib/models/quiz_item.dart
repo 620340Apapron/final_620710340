@@ -1,6 +1,7 @@
+
 class guizItem {
   final String image;
-  final String name;
+  final List<dynamic> name;
 
   guizItem({
     required this.image,
