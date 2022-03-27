@@ -1,19 +1,19 @@
-class QuizItem {
+class guizItem {
   final String image;
   final String name;
 
-  QuizItem({
+  guizItem({
     required this.image,
     required this.name,
   });
 
-  factory QuizItem.fromJson(Map<String, dynamic> json) {
-    return QuizItem(
+  factory guizItem.fromJson(Map<String, dynamic> json) {
+    return guizItem(
       name: json['name'],
       image: json['image'],
     );
   }
-  QuizItem.fromJson2(Map<String, dynamic> json)
+  guizItem.fromJson2(Map<String, dynamic> json)
       : name = json['name'],
         image = json['image'];
 

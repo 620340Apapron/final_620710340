@@ -24,25 +24,38 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
 
   @override
   Widget build(BuildContext context) {
+    var quizItem;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('FLUTTER FOOD'),
-      ),
       body: Stack(
         children: [
-          ListView.builder(
-            padding: const EdgeInsets.all(8.0),
-            itemCount: QuizData.list.length,
-            itemBuilder: (context, index) => _build(context),
-          ),
-          if (_isLoading)
-            const Center(
-              child: SizedBox(
-                width: 40.0,
-                height: 40.0,
-                child: CircularProgressIndicator(),
+          Container(
+            constraints: const BoxConstraints.expand(),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/BG.jpg'),
+                fit: BoxFit.cover,
               ),
             ),
+            alignment: Alignment.center,
+            child: Column(children: [
+              AspectRatio(
+                aspectRatio: 1.7,
+                child: Image.network(
+                  quizItem.image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              if (_isLoading)
+                const Center(
+                  child: SizedBox(
+                    width: 40.0,
+                    height: 40.0,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+            ]),
+          ),
         ],
       ),
     );
@@ -63,17 +76,8 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
 
     setState(() {
       QuizData.list = apiResult.data
-          .map<QuizItem>((item) => QuizItem.fromJson(item))
+          .map<guizItem>((item) => List<String>.from(json[item]))
           .toList();
-
     });
   }
-
-  @override
-  Widget _build(BuildContext context) {
-    return {
-
-    }
-  }
-
 }

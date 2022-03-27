@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Food',
+      title: 'Flutter Quizz',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.blue,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         textTheme: const TextTheme(
           headline1: TextStyle(
