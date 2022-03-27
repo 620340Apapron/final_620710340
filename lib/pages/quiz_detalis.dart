@@ -66,6 +66,7 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
           .map<guizItem>((item) => guizItem.fromJson(item))
           .toList();
     });
+
   }
 
   Widget _build(BuildContext context, int index) {
