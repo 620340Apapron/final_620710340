@@ -25,15 +25,7 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          // body: Stack(
-          //   children: [
-          //     ListView.builder(
-          //       itemCount: QuizData.list.length,
-          //       itemBuilder: (context, index) => _buildListItem(context, index),
-          //     ),
-          //     if (_isLoading)
-          Container(
+      body: Container(
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -42,6 +34,16 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
           ),
         ),
         alignment: Alignment.center,
+        child: Stack(
+          children: [
+            ListView.builder(
+              padding: const EdgeInsets.all(8.0),
+              itemCount: QuizData.list.length,
+              itemBuilder: (context, index) => _build(context, index),
+            ),
+            if (_isLoading) const Center(),
+          ],
+        ),
       ),
     );
   }
@@ -66,7 +68,7 @@ class _QuizeDetalisState extends State<QuizeDetalis> {
     });
   }
 
-  Widget _buildListItem(BuildContext context, int index) {
+  Widget _build(BuildContext context, int index) {
     var guizItem = QuizData.list[index];
 
     return Scaffold(
